@@ -1,7 +1,6 @@
 import type { Contact, ApiResponse } from "../types/contact.ts";
 
-const BASE_URL = "http://localhost:8000/api/v1/contact";
-
+const BASE_URL = import.meta.env.VITE_API_URL;
 export const getAllContacts = async (): Promise<ApiResponse<Contact[]>> => {
   const response = await fetch(`${BASE_URL}/getallContacts`);
   if (!response.ok) {
