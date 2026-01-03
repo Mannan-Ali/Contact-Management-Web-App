@@ -1,6 +1,4 @@
 import "dotenv/config";
-//we import it in the index.js file as soon as possible as we want the env variable to be avaiable to all the files and code
-//imdediately so importing here at first is important
 import connectDB from "./db/connection.js";
 import { app } from "./app.js";
 
