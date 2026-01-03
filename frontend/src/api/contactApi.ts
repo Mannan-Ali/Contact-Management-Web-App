@@ -1,8 +1,8 @@
 import type { Contact, ApiResponse } from "../types/contact.ts";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
 export const getAllContacts = async (): Promise<ApiResponse<Contact[]>> => {
-  const response = await fetch(`${BASE_URL}/getallContacts`);
+  const response = await fetch(`${VITE_BASE_URL}/getallContacts`);
   if (!response.ok) {
     throw new Error("Failed to fetch contacts");
   }
@@ -12,7 +12,7 @@ export const getAllContacts = async (): Promise<ApiResponse<Contact[]>> => {
 export const addContact = async (
   contactData: Omit<Contact, "_id" | "createdAt">
 ): Promise<ApiResponse<Contact>> => {
-  const response = await fetch(`${BASE_URL}/addContact`, {
+  const response = await fetch(`${VITE_BASE_URL}/addContact`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export const addContact = async (
 };
 
 export const deleteContact = async (id: string): Promise<ApiResponse<null>> => {
-  const response = await fetch(`${BASE_URL}/deleteContact/${id}`, {
+  const response = await fetch(`${VITE_BASE_URL}/deleteContact/${id}`, {
     method: "DELETE",
   });
   if (!response.ok) throw new Error("Failed to delete contact");
