@@ -22,12 +22,6 @@ A modern, full-stack Contact Management System built with the MERN stack (MongoD
 | Tailwind CSS v3 | REST API | |
 | React Router 7 | | |
 
-## 📂 Project Structure
-```text
-.
-├── backend/        # Node.js + Express API
-└── frontend/       # React + TypeScript + Tailwind
-
 ## 📘 Documentation
 
 - 🔧 **Backend API Documentation**  
@@ -35,3 +29,10 @@ A modern, full-stack Contact Management System built with the MERN stack (MongoD
 
 - 🎨 **Frontend Application Documentation**  
   👉 [Frontend README](frontend/README.md)
+
+
+## 📂 Project Structure
+```text
+.
+├── backend/        # Node.js + Express API
+└── frontend/       # React + TypeScript + Tailwind
