@@ -1,23 +1,25 @@
-import { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
-import ContactList from '../components/ContactList';
-import { getAllContacts } from '../api/contactApi';
-import type { Contact } from '../types/contact';
+import { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import ContactList from "../components/ContactList";
+import { getAllContacts } from "../api/contactApi";
+import type { Contact } from "../types/contact";
 
 const Home = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const fetchContacts = useCallback(async () => {
     try {
-      setError('');
+      setError("");
       const response = await getAllContacts();
       if (response.success) {
         setContacts(response.data);
       }
     } catch (err) {
-      setError('Failed to connect to the server. Please ensure backend is running.');
+      setError(
+        "Failed to connect to the server. Please ensure backend is running."
+      );
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -44,8 +46,17 @@ const Home = () => {
             to="/add"
             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
           >
-            <svg className="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+            <svg
+              className="-ml-1 mr-2 h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clipRule="evenodd"
+              />
             </svg>
             Add New Contact
           </Link>
@@ -65,7 +76,7 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <ContactList contacts={contacts} />
+        <ContactList contacts={contacts} onRefresh={fetchContacts} />
       )}
     </div>
   );

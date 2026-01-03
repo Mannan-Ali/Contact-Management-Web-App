@@ -62,4 +62,34 @@ const getAllContacts = async (req, res) => {
     }
 };
 
-export {storeContact,getAllContacts};
+const deleteContact = async (req, res) => {
+    try {
+        const { contactId } = req.params;
+
+        // Verify the contact exists first
+        const contact = await Contact.findById(contactId);
+        
+        if (!contact) {
+            return res.status(404).json({
+                success: false,
+                message: "Contact not found! It may have already been deleted."
+            });
+        }
+
+        // Delete the contact
+        await Contact.findByIdAndDelete(contactId);
+
+        return res.status(200).json({
+            success: true,
+            message: "Contact deleted successfully!"
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error deleting contact",
+            error: error.message
+        });
+    }
+};
+export {storeContact,getAllContacts,deleteContact};

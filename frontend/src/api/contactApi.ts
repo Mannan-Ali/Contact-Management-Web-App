@@ -27,3 +27,11 @@ export const addContact = async (
   }
   return response.json();
 };
+
+export const deleteContact = async (id: string): Promise<ApiResponse<null>> => {
+  const response = await fetch(`${BASE_URL}/deleteContact/${id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) throw new Error("Failed to delete contact");
+  return response.json();
+};
